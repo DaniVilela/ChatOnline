@@ -1,0 +1,55 @@
+body{
+    background-color: #191B1C;
+    color: white;
+}
+.custom-textarea{
+   background-color: #232628;
+   color: white;
+   border-radius: 50px;
+   border: 1px solid black;
+   height: auto; /* Permite ajustar la altura automáticamente */
+   resize: none;
+   overflow: hidden; /* Esconde el scroll interior */
+
+}
+.custom-textarea::placeholder {
+    color: white !important;
+}
+
+.form-floating{
+margin-bottom: 10px; /* Reduce el margen inferior del form-floating */
+    padding: .3rem;
+}
+.form-floating > .custom-textarea:focus {
+    background-color: #232628;
+    color: white;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Efecto al enfocar */
+    border-color: #66afe9; /* Color del borde al enfocar */
+}
+
+.chat-area{
+    margin-top:40px;
+}
+#sendButton {
+    height: auto;
+    width: auto;
+    padding: .375rem .75rem;
+    white-space: nowrap;
+}
+@media (max-width: 450px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-floating, .custom-textarea {
+        width: 100% !important;
+    }
+
+    #sendButton {
+
+        width: 8rem;
+    }
+}
