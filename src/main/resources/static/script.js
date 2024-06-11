@@ -29,7 +29,12 @@ function connect() {
 
 function sendMessage() {
     let messageContent = messageInput.value.trim();
-    let user = "|---"+userInput.value.trim()+"---|";
+    let user= "";
+    if(userInput.value.trim() == ""){
+        user = "|---Anónimo---|";
+    }else{
+        user = "|---"+userInput.value.trim()+"---|";
+    }
     if (messageContent && stompClient) {
         let message = { content: messageContent, sender: user };
         stompClient.send("/app/sendMessage", {}, JSON.stringify(message)); //envía el mensaje
