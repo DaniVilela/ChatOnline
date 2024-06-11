@@ -1,10 +1,12 @@
 let messageInput = document.getElementById("messageInput");
 let btnSend = document.getElementById("sendButton");
+let userInput = document.getElementById("user");
+
+//ajusta la altura del textarea
 function adjustHeight(element) {
     element.style.height = "auto";
     element.style.height = element.scrollHeight + "px";
 }
-// Call the function initially to set the correct height
 adjustHeight(messageInput);
 
 
@@ -12,15 +14,10 @@ adjustHeight(messageInput);
 // Define una variable para el cliente Stomp que manejará la conexión WebSocket
 let stompClient = null;
 
-// Función para establecer la conexión WebSocket con el servidor backend
 function connect() {
 // Establece una conexión SockJS al endpoint '/chat' del servidor WebSocket
     let socket = new SockJS('/chat');
-
-   // Crea el cliente Stomp a partir del socket
     stompClient = Stomp.over(socket);
-
- // Conecta el cliente Stomp al servidor WebSocket
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
   // Suscribe al cliente a un canal específico '/topic/publicChat' para recibir mensajes
@@ -32,9 +29,10 @@ function connect() {
 
 function sendMessage() {
     let messageContent = messageInput.value.trim();
+    let user = "|---"+userInput.value.trim()+"---|";
     if (messageContent && stompClient) {
-        let message = { content: messageContent, sender: 'User' };
-        stompClient.send("/app/sendMessage", {}, JSON.stringify(message));
+        let message = { content: messageContent, sender: user };
+        stompClient.send("/app/sendMessage", {}, JSON.stringify(message)); //envía el mensaje
         messageInput.value = '';
     }
 }
@@ -43,14 +41,8 @@ function sendMessage() {
 function showMessage(message) {
  // Obtiene el área de chat del DOM
     let chatArea = document.querySelector('.chat-area');
-
-  // Crea un elemento 'p' para mostrar el mensaje
     let messageElement = document.createElement('p');
-
-// Asigna el contenido del mensaje al elemento 'p'
-    messageElement.textContent = message.sender + ': ' + message.content;
-
-  // Agrega el mensaje al área de chat
+    messageElement.textContent = message.sender + ":   " + message.content;
     chatArea.appendChild(messageElement);
 }
 

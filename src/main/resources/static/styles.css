@@ -3,10 +3,10 @@ body{
     color: white;
 }
 .custom-textarea{
-   background-color: #232628;
+   background-color: transparent;
    color: white;
-   border-radius: 50px;
-   border: 1px solid black;
+   border: none;
+   border-radius: 0;
    height: auto; /* Permite ajustar la altura automáticamente */
    resize: none;
    overflow: hidden; /* Esconde el scroll interior */
@@ -24,12 +24,16 @@ margin-bottom: 10px; /* Reduce el margen inferior del form-floating */
     background-color: #232628;
     color: white;
     outline: none;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Efecto al enfocar */
-    border-color: #66afe9; /* Color del borde al enfocar */
+    box-shadow: none;
+    border-bottom: #66afe9; /* Color del borde al enfocar */
 }
 
 .chat-area{
     margin-top:40px;
+      word-wrap: break-word; /* Permite el ajuste de palabras largas */
+        word-break: break-all; /* Permite el corte de palabras largas */
+        white-space: pre-wrap; /* Conserva los espacios y saltos de línea */
+        max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
 }
 #sendButton {
     height: auto;
